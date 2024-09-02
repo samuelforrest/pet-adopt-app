@@ -14,7 +14,7 @@ export default function Index() {
     >
       {user?
         <Redirect href={"/(tabs)/home"} />
-        :<Redirect href={"/login"}/>}
+        :<Redirect href={"/login"} />}
 
     </View>
 

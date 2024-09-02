@@ -1,10 +1,10 @@
-import { View, Text, Image, Pressable, Button } from 'react-native'
-import React, { useCallback } from 'react'
+import { View, Text, Image, Pressable } from 'react-native'
+import React from 'react'
 import Colors from "./../../constants/Colors.ts"
+import * as WebBrowser from 'expo-web-browser'
 import { useOAuth } from '@clerk/clerk-expo'
 import * as Linking from 'expo-linking'
-import * as WebBrowser from 'expo-web-browser'
-import { Link } from 'expo-router'
+
 
 export const useWarmUpBrowser = () => {
   React.useEffect(() => {
@@ -17,6 +17,9 @@ export const useWarmUpBrowser = () => {
   }, [])
 }
 
+const redirectUrl = Linking.createURL('/(tabs)/home', { scheme: 'myapp' });
+
+
 WebBrowser.maybeCompleteAuthSession()
 
 export default function LoginScreen() {
@@ -25,10 +28,12 @@ export default function LoginScreen() {
   const { startOAuthFlow } = useOAuth({ strategy: 'oauth_google' })
 
   const onPress = React.useCallback(async () => {
+    console.log("Button Pressed!")
     try {
       const { createdSessionId, signIn, signUp, setActive } = await startOAuthFlow({
         redirectUrl: Linking.createURL('/(tabs)/home', { scheme: 'myapp' }),
       })
+      console.log('OAuth flow completed', createdSessionId);
 
       if (createdSessionId) {
         
