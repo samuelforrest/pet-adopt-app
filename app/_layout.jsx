@@ -45,6 +45,7 @@ export default function RootLayout() {
     publishableKey={publishableKey}>
     <Stack>
       <Stack.Screen name="index" />
+      <Stack.Screen name="(tabs)" />
       <Stack.Screen name="login/index"
       options={{
         headerShown:false
