@@ -1,3 +1,4 @@
+import { Link } from "expo-router";
 import { Text, View } from "react-native";
 
 export default function Index() {
@@ -8,11 +9,11 @@ export default function Index() {
 
       }}
     >
-      <Text style={{
-        fontFamily: "outfit-bold",
-        fontSize:40,
-      }}>
-        Edit app/index.jsx to edit this screen.</Text>
+      <Link href={"/login"}>
+
+          <Text> Go to Login Screen</Text>
+
+      </Link>
     </View>
   );
 }
